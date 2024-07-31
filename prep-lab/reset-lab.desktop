@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Initialize/Reset Lab
+Comment=Run commands to reset the lab environment
+Exec=sudo /home/labuser/lakehouse-opt/prep-lab/reset-lab.sh
+Icon=/home/admin/reset.png
+Terminal=true
+
