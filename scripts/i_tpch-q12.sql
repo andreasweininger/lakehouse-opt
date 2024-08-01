@@ -1,5 +1,3 @@
-USE iceberg_data.i_tpch;
-
 SELECT
     l.shipmode,
     sum(case
@@ -15,8 +13,8 @@ SELECT
         else 0
     end) AS low_line_count
 FROM
-    orders o,
-    lineitem l
+    iceberg_data.i_tpch.orders o,
+    iceberg_data.i_tpch.lineitem l
 WHERE
     o.orderkey = l.orderkey
     AND l.shipmode in ('MAIL', 'SHIP')

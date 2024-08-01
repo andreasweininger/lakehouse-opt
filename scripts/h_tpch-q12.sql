@@ -1,30 +1,28 @@
-USE hive_data.h_tpch;
-
 SELECT
-    l_shipmode,
+    l.shipmode,
     sum(case
-        when o_orderpriority = '1-URGENT'
-            OR o_orderpriority = '2-HIGH'
+        when o.orderpriority = '1-URGENT'
+            OR o.orderpriority = '2-HIGH'
             then 1
         else 0
     end) as high_line_count,
     sum(case
-        when o_orderpriority <> '1-URGENT'
-            AND o_orderpriority <> '2-HIGH'
+        when o.orderpriority <> '1-URGENT'
+            AND o.orderpriority <> '2-HIGH'
             then 1
         else 0
     end) AS low_line_count
 FROM
-    orders,
-    lineitem
+    hive_data.h_tpch.orders o,
+    hive_data.h_tpch.lineitem l
 WHERE
-    o_orderkey = l_orderkey
-    AND l_shipmode in ('MAIL', 'SHIP')
-    AND l_commitdate < l_receiptdate
-    AND l_shipdate < l_commitdate
-    AND l_receiptdate >= date '1994-01-01'
-    AND l_receiptdate < date '1994-01-01' + interval '1' year
+    o.orderkey = l.orderkey
+    AND l.shipmode in ('MAIL', 'SHIP')
+    AND l.commitdate < l.receiptdate
+    AND l.shipdate < l.commitdate
+    AND l.receiptdate >= date '1994-01-01'
+    AND l.receiptdate < date '1994-01-01' + interval '1' year
 GROUP BY
-    l_shipmode
+    l.shipmode
 ORDER BY
-    l_shipmode;
+    l.shipmode;
