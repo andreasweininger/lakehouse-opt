@@ -1,0 +1,13 @@
+jupyterlab
+jupyter
+grpcio==1.60.0
+pymilvus
+ipython-sql==0.4.1
+sqlalchemy==1.4.46
+sqlalchemy==1.4.46 
+pyhive[presto]
+sentence_transformers
+python-dotenv
+ibm-cloud-sdk-core
+ibm_watsonx_ai
+wikipedia
